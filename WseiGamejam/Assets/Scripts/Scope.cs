@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -19,7 +20,9 @@ public class Scope : MonoBehaviour
 
     private bool canFire = true;
 
-    
+    private static Vector2[] reloadZones = new Vector2[] { new Vector2(0f, 1f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f) };
+    float realoadZonesErrorTolerance = 0.1f;
+    int index = 0;
 
     public void Awake()
     {
@@ -38,12 +41,38 @@ public class Scope : MonoBehaviour
     private void OnPlayerMoved(Vector2 obj)
     {
         currentMovement = new Vector2(obj.x, obj.y);
+
+        if (NearlyEqual(obj, reloadZones[index], realoadZonesErrorTolerance))
+        {
+            if(index == 0)
+            {
+                StartCoroutine("ResetReload");
+            }
+
+            if (++index == reloadZones.Length)
+            {
+                canFire = true;
+                index = 0;
+            }
+        }
+    }
+
+    private IEnumerator ResetReload()
+    {
+        yield return new WaitForSeconds(1.2f);
+        index = 0;
+    }
+
+    public static bool NearlyEqual(Vector2 a, Vector2 b, float error = 0.1f)
+    {
+        return a.x - b.x <= error && a.y - b.y <= error;
     }
 
     private void OnPlayerShot()
     {
         if (!canFire) return;
-        //canFire = false;
+        Debug.Log("Shot");
+        canFire = false;
 
         var colliders = Physics2D.OverlapCircleAll(transform.position, BulletRadius);
         Debug.DrawLine(transform.position + Vector3.left * BulletRadius, transform.position + Vector3.right * BulletRadius);
