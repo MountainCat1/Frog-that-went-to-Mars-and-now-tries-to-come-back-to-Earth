@@ -131,6 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLength: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   frogSpawner: {fileID: 0}
 --- !u!58 &8198306370359412335
 CircleCollider2D:
