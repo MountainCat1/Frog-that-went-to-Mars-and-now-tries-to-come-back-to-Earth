@@ -7,9 +7,6 @@ public class Scope : MonoBehaviour
     public float InputStrength = 7f;
 
     [SerializeField]
-    private GameObject Bullet;
-
-    [SerializeField]
     private float BulletRadius = 0.12f;
 
     private Vector3 currentMovement;
@@ -45,5 +42,11 @@ public class Scope : MonoBehaviour
         }
 
         //Instantiate(Bullet, transform.position, Quaternion.identity);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, BulletRadius);
     }
 }
