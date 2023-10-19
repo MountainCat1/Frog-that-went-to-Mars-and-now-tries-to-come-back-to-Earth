@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class Scope : MonoBehaviour
 {
@@ -9,21 +10,23 @@ public class Scope : MonoBehaviour
     [SerializeField]
     private float BulletRadius = 0.12f;
 
+    [Inject]
+    private ShooterPlayerInput shooterPlayerInput;
+    
     private Rigidbody2D rb;
 
     private Vector2 currentMovement;
 
     private bool canFire = true;
 
-    public void Init(ShooterPlayerInput shooterPlayerInput)
-    {
-        shooterPlayerInput.PlayerMoved += OnPlayerMoved;
-        shooterPlayerInput.PlayerShot += OnPlayerShot;
-    }
+    
 
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        shooterPlayerInput.PlayerMoved += OnPlayerMoved;
+        shooterPlayerInput.PlayerShot += OnPlayerShot;
     }
 
     public void Update()
