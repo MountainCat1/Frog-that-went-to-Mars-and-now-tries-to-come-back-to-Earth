@@ -56,7 +56,17 @@ public class PlayerManager : MonoBehaviour
             RunnerPlayerInput = player.RunnerPlayerInput;
             if (Utilities.IsInGameScene)
             {
-                Instantiate(RunnerPrefab);
+                Vector2 spawnPoint = Vector2.zero;
+
+                var frogSpawner = FindAnyObjectByType<FrogSpawner>();
+                if (frogSpawner != null)
+                {
+                    spawnPoint = frogSpawner.GetSpawnPoint();
+                }
+
+                Frog frog = Instantiate(RunnerPrefab, spawnPoint, Quaternion.identity);
+                frog.frogSpawner = frogSpawner;
+
                 Runner.Input.SwitchCurrentActionMap("Runner");
             }
         }
