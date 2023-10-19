@@ -8,7 +8,6 @@ public class RunnerPlayerInput : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        Debug.Log("XD");
         var move = context.ReadValue<Vector2>();
         PlayerMoved?.Invoke(move);
     }

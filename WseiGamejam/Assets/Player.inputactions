@@ -2,6 +2,45 @@
     "name": "Player",
     "maps": [
         {
+            "name": "Runner",
+            "id": "51862530-01fe-4c26-bcd8-1dca6c598c42",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "5a4885f8-1d8e-4dae-89af-39d0e52dc421",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d9208499-6242-41ff-bc25-e973edd18427",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45b12d51-a6e7-41c6-ab23-dd7956e5d4f4",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Shooter",
             "id": "a6b34b9f-0f1d-40ed-b714-ccb4ec90d390",
             "actions": [
@@ -31,7 +70,7 @@
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Shooter",
+                    "groups": "Default",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -42,7 +81,7 @@
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Shooter",
+                    "groups": "Default",
                     "action": "Shot",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -50,14 +89,14 @@
             ]
         },
         {
-            "name": "Runner",
-            "id": "51862530-01fe-4c26-bcd8-1dca6c598c42",
+            "name": "Common",
+            "id": "3874e3e5-c393-46a0-978c-2d2c09e6b8ca",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "Ready",
                     "type": "Value",
-                    "id": "5a4885f8-1d8e-4dae-89af-39d0e52dc421",
-                    "expectedControlType": "Vector2",
+                    "id": "126e4875-a339-44fa-86e6-76e8b4b48fcd",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -66,12 +105,23 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "d9208499-6242-41ff-bc25-e973edd18427",
-                    "path": "<Gamepad>/dpad",
+                    "id": "8f88151f-6c4f-49d9-9c7f-f2f96bdc61d3",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Runner",
-                    "action": "Move",
+                    "groups": "Default",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "082b1ffe-c7f9-4d6c-a38c-9439959a9c91",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -80,19 +130,8 @@
     ],
     "controlSchemes": [
         {
-            "name": "Shooter",
-            "bindingGroup": "Shooter",
-            "devices": [
-                {
-                    "devicePath": "<Gamepad>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "Runner",
-            "bindingGroup": "Runner",
+            "name": "Default",
+            "bindingGroup": "Default",
             "devices": [
                 {
                     "devicePath": "<Gamepad>",

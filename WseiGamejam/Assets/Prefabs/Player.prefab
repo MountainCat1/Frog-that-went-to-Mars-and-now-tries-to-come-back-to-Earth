@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5829106670324601022}
+  - component: {fileID: 136943307124289708}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32,6 +33,20 @@ Transform:
   - {fileID: 1637169925080447309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &136943307124289708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4432017595260635751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a40414e9cb4271bd94a94961129c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Input>k__BackingField: {fileID: 7815738323744846574}
+  <CommonInput>k__BackingField: {fileID: 6688001063720065786}
 --- !u!1 &5113675615344974762
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,6 +79,7 @@ Transform:
   m_Children:
   - {fileID: 224803905210726387}
   - {fileID: 8963233635602178946}
+  - {fileID: 6618420104014184720}
   m_Father: {fileID: 5829106670324601022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7815738323744846574
@@ -139,9 +155,25 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5a4885f8-1d8e-4dae-89af-39d0e52dc421
     m_ActionName: Runner/New action[/XInputControllerWindows1/dpad,/XInputControllerWindows/dpad]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6688001063720065786}
+        m_TargetAssemblyTypeName: CommonPlayerInput, Assembly-CSharp
+        m_MethodName: Ready
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 126e4875-a339-44fa-86e6-76e8b4b48fcd
+    m_ActionName: Common/Ready[/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger,/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Shooter
+  m_DefaultActionMap: Common
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &5962318054441967200
@@ -186,6 +218,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 243c75828710404ba4ef7a1b6f37b463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6369256882709301413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6618420104014184720}
+  - component: {fileID: 6688001063720065786}
+  m_Layer: 0
+  m_Name: Common Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6618420104014184720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6369256882709301413}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1637169925080447309}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6688001063720065786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6369256882709301413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28364a21a3f2be479d4ebbeabca9fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8724096361503661516
