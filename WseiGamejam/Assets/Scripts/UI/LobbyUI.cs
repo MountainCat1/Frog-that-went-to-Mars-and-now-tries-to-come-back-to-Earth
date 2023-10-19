@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ namespace UI
         private void Start()
         {
             _playerManager = GameObject.FindObjectOfType<PlayerManager>();
-            
+
             foreach (var player in _playerManager.Players)
             {
                 OnPlayerJoined(player);
@@ -26,15 +27,29 @@ namespace UI
             _playerManager.PlayerJoined += OnPlayerJoined;
         }
 
+        private void OnDestroy()
+        {
+            if (_playerManager is not null)
+            {
+                _playerManager.PlayerJoined -= OnPlayerJoined;
+                foreach (var lpPlayer in _playerManager.Players)
+                {
+                    lpPlayer.PlayerReady -= ReadyChange;
+                    lpPlayer.PlayerNotReady -= ReadyChange;
+                }
+            }
+        }
+
         private void OnPlayerJoined(Player player)
         {
             playerDisplays[player.Input.playerIndex].Initialize(player);
 
-            player.OnPlayerReady += OnReadyChange;
-            player.OnPlayerNotReady += OnReadyChange;
+            player.PlayerReady += ReadyChange;
+            player.PlayerNotReady += ReadyChange;
         }
 
-        private void OnReadyChange()
+
+        private void ReadyChange()
         {
             if (_playerManager.Players.TrueForAll(x => x.Ready) && _playerManager.Players.Count == 2)
             {
@@ -48,7 +63,8 @@ namespace UI
 
         private void StopCountdown()
         {
-            countdownDisplay.fillAmount = 0;
+            if (countdownDisplay is not null)
+                countdownDisplay.fillAmount = 0;
             if (_countdownCoroutine is not null)
                 StopCoroutine(_countdownCoroutine);
         }

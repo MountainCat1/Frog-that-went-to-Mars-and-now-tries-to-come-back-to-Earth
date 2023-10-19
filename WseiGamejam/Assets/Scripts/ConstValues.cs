@@ -2,7 +2,7 @@
 
 public class ConstValues
 {
-    public const string GameSceneName = "SampleScene";
+    public const string GameSceneName = "GameScene";
     public const float FramesPerSecond = 2f;
 }
 

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,13 +23,24 @@ public class PlayerLobbyDisplayUI : MonoBehaviour
         disconnectedDisplay.SetActive(false);
         connectedDisplay.SetActive(true);
 
-        player.OnPlayerReady += () =>
-        {
-            readyDisplay.color = Color.green;
-        };
-        player.OnPlayerNotReady += () =>
-        {
-            readyDisplay.color = Color.red;
-        };
+        player.PlayerReady += PlayerReady;
+        player.PlayerNotReady += PlayerNotReady;
     }
+
+    private void OnDestroy()
+    {
+        _player.PlayerReady -= PlayerReady;
+        _player.PlayerNotReady -= PlayerNotReady;
+    }
+
+    private void PlayerNotReady()
+    {
+        readyDisplay.color = Color.red;
+    }
+
+    private void PlayerReady()
+    {
+        readyDisplay.color = Color.green;
+    }
+
 }

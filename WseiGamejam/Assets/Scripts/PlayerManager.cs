@@ -27,11 +27,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        Instantiate(ShooterPrefab);
-        Shooter.Input.SwitchCurrentActionMap("Shooter");
-
-        Instantiate(RunnerPrefab);
-        Runner.Input.SwitchCurrentActionMap("Runner");
+        Debug.Log(this);
     }
 
     public void OnPlayerJoined(PlayerInput input)
@@ -68,4 +64,17 @@ public class PlayerManager : MonoBehaviour
 
       Debug.Log($"Player joined {input.playerIndex}");
    }
+
+    public void SpawnPlayers()
+    {
+        Instantiate(ShooterPrefab);
+        Debug.Log(Shooter);
+        Debug.Log(Shooter.Input);
+        Shooter.Input.enabled = true;
+        Shooter.Input.SwitchCurrentActionMap("Shooter");
+
+        Instantiate(RunnerPrefab);
+        Runner.Input.enabled = true;
+        Runner.Input.SwitchCurrentActionMap("Runner");
+    }
 }

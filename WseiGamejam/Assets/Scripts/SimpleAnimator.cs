@@ -18,14 +18,15 @@ public class SimpleAnimator : MonoBehaviour
 
     private void OnDestroy()
     {
-        _animatorManager.NewFrame -= OnNewFrame;
+        if (_animatorManager)
+            _animatorManager.NewFrame -= OnNewFrame;
     }
 
     private void OnNewFrame()
     {
         if (frames.Count <= 1)
             return;
-        
+
         _currentFrameIndex++;
         if (_currentFrameIndex >= frames.Count)
             _currentFrameIndex = 0;
