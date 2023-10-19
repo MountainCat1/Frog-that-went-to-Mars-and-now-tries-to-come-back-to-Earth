@@ -186,7 +186,8 @@ MonoBehaviour:
   start: {fileID: 378421088}
   end: {fileID: 1084038977}
   spawnCarDelay: 3
-  carSpeed: 3
+  trapSpeed: 3
+  trapAcceleration: 2
   trapPrefab: {fileID: 2790365063882801332, guid: 5e230505a9aacc84289aefaa24557d4c, type: 3}
 --- !u!4 &604630912
 Transform:

@@ -7,14 +7,15 @@ public class CarRow : MapRow
     [SerializeField] private Transform end;
 
     [SerializeField] private float spawnCarDelay;
-    [SerializeField] private float carSpeed;
+    [SerializeField] private float trapSpeed;
+    [SerializeField] private float trapAcceleration;
     [SerializeField] private Trap trapPrefab;
 
-    private Coroutine spawnTrapsCoroutine;
+    private Coroutine _spawnTrapsCoroutine;
     
     private void Awake()
     {
-        spawnTrapsCoroutine = StartCoroutine(SpawnTrapsCoroutine());
+        _spawnTrapsCoroutine = StartCoroutine(SpawnTrapsCoroutine());
     }
     
     private IEnumerator SpawnTrapsCoroutine()
@@ -31,6 +32,6 @@ public class CarRow : MapRow
         var trap = Instantiate(trapPrefab);
         trap.transform.position = start.position;
 
-        trap.Initialize(end.position);
+        trap.Initialize(end.position, trapSpeed, trapAcceleration);
     }
 }
