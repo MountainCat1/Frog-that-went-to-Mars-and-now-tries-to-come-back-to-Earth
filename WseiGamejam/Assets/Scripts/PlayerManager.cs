@@ -59,7 +59,7 @@ public class PlayerManager : MonoBehaviour
             if (Utilities.IsInGameScene)
             {
                 Instantiate(RunnerPrefab);
-                Shooter.Input.SwitchCurrentActionMap("Runner");
+                Runner.Input.SwitchCurrentActionMap("Runner");
             }
         }
             
