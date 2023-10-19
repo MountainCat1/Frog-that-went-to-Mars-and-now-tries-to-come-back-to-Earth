@@ -13,6 +13,8 @@ public class Scope : MonoBehaviour
 
     private Vector2 currentMovement;
 
+    private bool canFire = true;
+
     public void Init(ShooterPlayerInput shooterPlayerInput)
     {
         shooterPlayerInput.PlayerMoved += OnPlayerMoved;
@@ -26,7 +28,7 @@ public class Scope : MonoBehaviour
 
     public void Update()
     {
-        rb.AddForce((currentMovement * Time.deltaTime * InputStrength));
+        rb.AddForce(currentMovement * Time.deltaTime * InputStrength);
         //transform.position += currentMovement * Time.deltaTime * InputStrength;
     }
 
@@ -37,6 +39,9 @@ public class Scope : MonoBehaviour
 
     private void OnPlayerShot()
     {
+        if (!canFire) return;
+        //canFire = false;
+
         var colliders = Physics2D.OverlapCircleAll(transform.position, BulletRadius);
         Debug.DrawLine(transform.position + Vector3.left * BulletRadius, transform.position + Vector3.right * BulletRadius);
 
@@ -45,7 +50,7 @@ public class Scope : MonoBehaviour
             var buff = collider.GetComponent<BuffPickup>();
             if(buff != null)
             {
-                Debug.Log(buff.test);
+
             }
         }
 

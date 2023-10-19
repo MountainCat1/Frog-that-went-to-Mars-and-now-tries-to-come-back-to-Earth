@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class BuffPickup : MonoBehaviour
 {
-    public string test = "TEST";
-
-
+    public BuffBase Buff = null;
 }
