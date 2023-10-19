@@ -7,8 +7,12 @@ public class Frog : MonoBehaviour
 
     [SerializeField] float jumpLength = 1f;
 
+    [HideInInspector]
+    public FrogSpawner frogSpawner;
+
     public void Awake()
     {
+        frogSpawner = FindAnyObjectByType<FrogSpawner>();
     }
 
     void Start()
@@ -45,6 +49,13 @@ public class Frog : MonoBehaviour
     {
         Debug.Log("Frog taking damage!");
 
+        Vector2 newStartPoint = Vector2.zero;
 
+        if (frogSpawner != null)
+        {
+            newStartPoint = frogSpawner.GetSpawnPoint();
+        }
+
+        transform.position = newStartPoint;
     }
 }
