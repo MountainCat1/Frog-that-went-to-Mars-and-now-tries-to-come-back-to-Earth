@@ -8,22 +8,22 @@ public class Frog : MonoBehaviour
     public static Frog Singleton { private set; get; }
 
     public static event Action FrogMoved;
+    public static event Action FromRemoved;
     
     private PlayerManager _playerManager;
+    private Player _runner;
 
     [SerializeField] float jumpLength = 1f;
 
     [SerializeField] LayerMask layerMask;
 
-    [HideInInspector]
-    public FrogSpawner frogSpawner;
-
     public void Awake()
     {
-        frogSpawner = FindAnyObjectByType<FrogSpawner>();
-        
-        if(Singleton)
-            Debug.Log("Singleton pooped their pants!");
+        if (Singleton)
+        {
+            Destroy(Singleton);
+            Singleton = this;
+        }
 
         Singleton = this;
     }
@@ -31,7 +31,14 @@ public class Frog : MonoBehaviour
     void Start()
     {
         _playerManager = FindObjectOfType<PlayerManager>();
-        _playerManager.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
+        _runner = _playerManager.Runner;
+        _runner.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
+    }
+
+
+    private void OnDestroy()
+    {
+        _runner.RunnerPlayerInput.PlayerMoved -= OnPlayerMoved;
     }
 
     private void Update()
@@ -88,14 +95,21 @@ public class Frog : MonoBehaviour
     {
         Debug.Log("Frog taking damage!");
 
-        Vector2 newStartPoint = Vector2.zero;
+        // Vector2 newStartPoint = Vector2.zero;
+        //
+        // if (frogSpawner != null)
+        // {
+        //     newStartPoint = frogSpawner.GetSpawnPoint();
+        // }
+        //
+        // transform.position = newStartPoint;
 
-        if (frogSpawner != null)
-        {
-            newStartPoint = frogSpawner.GetSpawnPoint();
-        }
+        Kill();
+    }
 
-        transform.position = newStartPoint;
+    private void Kill()
+    {
+        Remove();
     }
 
     void OnDrawGizmosSelected()
@@ -106,6 +120,7 @@ public class Frog : MonoBehaviour
 
     public void Remove()
     {
-        throw new NotImplementedException();
+        Destroy(gameObject);
+        FromRemoved?.Invoke();
     }
 }
