@@ -10,7 +10,7 @@ public class SpawnStarterObjects : MonoBehaviour
     void Start()
     {
         var Scope = Instantiate(ScopePrefab, Vector3.zero, Quaternion.identity);
-        Scope.GetComponent<Scope>().Init(GetComponent<PlayerInputMediator>());
+        Scope.GetComponent<Scope>().Init(GetComponent<ShooterPlayerInput>());
     }
 
 }

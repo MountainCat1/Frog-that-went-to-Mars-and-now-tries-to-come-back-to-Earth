@@ -11,10 +11,10 @@ public class Scope : MonoBehaviour
 
     private Vector3 currentMovement;
 
-    public void Init(PlayerInputMediator playerInputMediator)
+    public void Init(ShooterPlayerInput shooterPlayerInput)
     {
-        playerInputMediator.PlayerMoved += OnPlayerMoved;
-        playerInputMediator.PlayerShot += OnPlayerShot;
+        shooterPlayerInput.PlayerMoved += OnPlayerMoved;
+        shooterPlayerInput.PlayerShot += OnPlayerShot;
     }
 
     public void Update()
