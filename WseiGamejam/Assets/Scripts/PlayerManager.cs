@@ -84,10 +84,7 @@ public class PlayerManager : MonoBehaviour
         Vector2 spawnPoint = Vector2.zero;
 
         var frogSpawner = FindAnyObjectByType<FrogSpawner>();
-        if (frogSpawner != null)
-        {
-            spawnPoint = frogSpawner.GetSpawnPoint();
-        }
+        spawnPoint = frogSpawner.GetSpawnPoint();
 
         Frog frog = Instantiate(RunnerPrefab, spawnPoint, Quaternion.identity);
         frog.frogSpawner = frogSpawner;
