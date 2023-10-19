@@ -13,6 +13,10 @@ public class xd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float H = Input.GetAxis("Horizontal");
+        float V = Input.GetAxis("Vertical");
+
+        Camera.current.transform.position += new Vector3(H, V, 0f);
+        Debug.Log(new Vector3(H, V, 0f));
     }
 }
