@@ -2,18 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputMediator : MonoBehaviour
+public class ShooterPlayerInput : MonoBehaviour
 {
     public event Action<Vector2> PlayerMoved;
     public event Action PlayerShot;
 
-    public void Start()
-    {
-        
-    }
-
     public void Move(InputAction.CallbackContext context)
     {
+        Debug.Log("xd");
         var move = context.ReadValue<Vector2>();
         PlayerMoved?.Invoke(move);
     }
@@ -23,7 +19,6 @@ public class PlayerInputMediator : MonoBehaviour
         if(!callbackContext.performed)
             return;
 
-        Debug.Log("XD");
         PlayerShot?.Invoke();
     }
 }
