@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Frog : MonoBehaviour
@@ -21,8 +22,9 @@ public class Frog : MonoBehaviour
         var delta = vector.normalized * jumpLength;
         transform.position += (Vector3)delta;
     }
-
+    
     public void TakeDamage()
     {
+        Debug.Log("Frog taking damage!");
     }
 }

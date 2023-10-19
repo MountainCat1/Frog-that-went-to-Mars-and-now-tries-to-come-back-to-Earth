@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Trap : MonoBehaviour
@@ -11,6 +12,15 @@ public class Trap : MonoBehaviour
         _acceleration = acceleration;
         _speed = speed;
         _destination = destination;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        var frog = col.gameObject.GetComponent<Frog>();
+        if(frog is null)
+            return;
+        
+        frog.TakeDamage();
     }
 
     private void Update()
