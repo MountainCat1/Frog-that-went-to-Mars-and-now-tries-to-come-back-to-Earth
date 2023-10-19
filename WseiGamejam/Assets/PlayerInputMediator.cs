@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputMediator : MonoBehaviour
 {
     public event Action<Vector2> PlayerMoved;
     public event Action PlayerShot;
