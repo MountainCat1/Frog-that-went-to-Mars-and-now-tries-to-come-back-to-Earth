@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class CarRow : MapRow
+public class ObstacleRow : MapRow
 {
     [SerializeField] private Transform start;
     [SerializeField] private Transform end;
