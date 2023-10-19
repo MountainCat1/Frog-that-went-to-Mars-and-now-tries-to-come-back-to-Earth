@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class Scope : MonoBehaviour
     private Vector2 currentMovement;
 
     private bool canFire = true;
+
+    public static event Action OnShot;
 
     private static Vector2[] reloadZones = new Vector2[] { new Vector2(0f, 1f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f), new Vector2(0f, 1f) };
     float realoadZonesErrorTolerance = 0.1f;
@@ -130,6 +133,8 @@ public class Scope : MonoBehaviour
                 frog.TakeDamage();
             }
         }
+
+        OnShot?.Invoke();
 
         //Instantiate(Bullet, transform.position, Quaternion.identity);
     }
