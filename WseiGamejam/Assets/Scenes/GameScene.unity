@@ -2294,7 +2294,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 13.45}
+  m_Offset: {x: 0, y: 12.55}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2360,12 +2360,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978307257}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1365131678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1086623830
 PrefabInstance:
@@ -2806,6 +2806,7 @@ Transform:
   - {fileID: 270335377}
   - {fileID: 1329221991}
   - {fileID: 1377720030}
+  - {fileID: 978307260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1377720029
@@ -4326,6 +4327,5 @@ SceneRoots:
   - {fileID: 389693956}
   - {fileID: 1365131678}
   - {fileID: 667681189}
-  - {fileID: 978307260}
   - {fileID: 155481836}
   - {fileID: 35603412}
