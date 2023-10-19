@@ -8,7 +8,5 @@ public class GameInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<ShooterPlayerInput>().FromComponentInHierarchy().AsSingle();
-        Container.Bind<RunnerPlayerInput>().FromComponentInHierarchy().AsSingle();
     }
 }

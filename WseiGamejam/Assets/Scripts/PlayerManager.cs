@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,6 +15,19 @@ public class PlayerManager : MonoBehaviour
     public Player Runner { get; set; }
     public RunnerPlayerInput RunnerPlayerInput { get; set; }
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        Shooter.Input.SwitchCurrentActionMap("Shooter");
+        Runner.Input.SwitchCurrentActionMap("Runner");
+    }
+
     public void OnPlayerJoined(PlayerInput input)
    {
       var player = input.gameObject.GetComponentInParent<Player>();
@@ -22,7 +36,9 @@ public class PlayerManager : MonoBehaviour
       
       Players.Add(player);
 
-        if (Shooter != null)
+      player.transform.parent = transform;
+
+        if (Shooter == null)
         {
             Shooter = player;
             ShooterPlayerInput = player.ShooterPlayerInput;

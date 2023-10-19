@@ -9,8 +9,7 @@ namespace UI
 {
     public class LobbyUI : MonoBehaviour
     {
-        [Inject] private PlayerInputManager _playerInputManager;
-        [Inject] private PlayerManager _playerManager;
+        private PlayerManager _playerManager;
 
         [SerializeField] private Image countdownDisplay;
         [SerializeField] private PlayerLobbyDisplayUI[] playerDisplays;
@@ -19,6 +18,8 @@ namespace UI
 
         private void Start()
         {
+            _playerManager = GameObject.FindObjectOfType<PlayerManager>();
+            
             foreach (var player in _playerManager.Players)
             {
                 OnPlayerJoined(player);
@@ -75,7 +76,7 @@ namespace UI
         private void StartGame()
         {
             Debug.Log("Game starting...");
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }

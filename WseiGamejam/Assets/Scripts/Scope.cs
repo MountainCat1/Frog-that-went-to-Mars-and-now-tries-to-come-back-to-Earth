@@ -11,7 +11,6 @@ public class Scope : MonoBehaviour
     [SerializeField]
     private float BulletRadius = 0.12f;
 
-    [Inject]
     private ShooterPlayerInput shooterPlayerInput;
     
     private Rigidbody2D rb;
@@ -27,11 +26,14 @@ public class Scope : MonoBehaviour
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
+    }
+    void Start()
+    {
+        shooterPlayerInput = FindObjectOfType<PlayerManager>().ShooterPlayerInput;
+        
         shooterPlayerInput.PlayerMoved += OnPlayerMoved;
         shooterPlayerInput.PlayerShot += OnPlayerShot;
     }
-
     public void Update()
     {
         rb.AddForce(currentMovement * Time.deltaTime * InputStrength);

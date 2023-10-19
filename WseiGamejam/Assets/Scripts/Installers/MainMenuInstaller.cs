@@ -7,8 +7,7 @@ namespace Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<PlayerInputManager>().FromComponentInHierarchy().AsSingle().NonLazy();
-            Container.Bind<PlayerManager>().FromComponentInHierarchy().AsSingle().NonLazy();
+
         }
     }
 }
