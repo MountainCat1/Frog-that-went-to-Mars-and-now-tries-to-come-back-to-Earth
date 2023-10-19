@@ -17,15 +17,15 @@ public class Platform : MonoBehaviour, IObstacle
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Trigger");
-        var frog = col.gameObject.GetComponent<Frog>();
-        if (frog is null)
-            return;
+        //Debug.Log("Trigger");
+        //var frog = col.gameObject.GetComponent<Frog>();
+        //if (frog is null)
+        //    return;
 
-        var locPos = transform.InverseTransformPoint(frog.transform.position);
+        //var locPos = transform.InverseTransformPoint(frog.transform.position);
 
-        frog.transform.SetParent(transform, false);
-        frog.transform.localPosition = locPos;
+        //frog.transform.SetParent(transform, false);
+        //frog.transform.localPosition = locPos;
     }
 
     private void Update()
