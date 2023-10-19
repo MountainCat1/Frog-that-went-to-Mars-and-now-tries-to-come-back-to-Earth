@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 public class Scope : MonoBehaviour
 {
     [SerializeField]
-    public float InputStrength = 7f;
+    public float InputStrength = 2f;
 
     [SerializeField]
     private float BulletRadius = 0.12f;
 
-    private Vector3 currentMovement;
+    private Rigidbody2D rb;
+
+    private Vector2 currentMovement;
 
     public void Init(ShooterPlayerInput shooterPlayerInput)
     {
@@ -17,14 +19,20 @@ public class Scope : MonoBehaviour
         shooterPlayerInput.PlayerShot += OnPlayerShot;
     }
 
+    public void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     public void Update()
     {
-        transform.position += currentMovement * Time.deltaTime * InputStrength;
+        rb.AddForce((currentMovement * Time.deltaTime * InputStrength));
+        //transform.position += currentMovement * Time.deltaTime * InputStrength;
     }
 
     private void OnPlayerMoved(Vector2 obj)
     {
-        currentMovement = new Vector3(obj.x, obj.y, 0f);
+        currentMovement = new Vector2(obj.x, obj.y);
     }
 
     private void OnPlayerShot()
