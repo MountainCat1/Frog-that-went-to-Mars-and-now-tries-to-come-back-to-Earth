@@ -20,6 +20,9 @@ public class InGameMenuUI : MonoBehaviour
 
     private void Update()
     {
+        if(_playerManager.Runner is null)
+            return;
+        
         shooterScoreDisplay.text = _playerManager.Shooter.Score.ToString();
         runnerScoreDisplay.text = _playerManager.Runner.Score.ToString();
     }

@@ -9,6 +9,7 @@ public class Frog : MonoBehaviour
 
     public static event Action FrogMoved;
     public static event Action FromRemoved;
+    public static event Action FromKilled;
     
     private PlayerManager _playerManager;
     private Player _runner;
@@ -93,6 +94,7 @@ public class Frog : MonoBehaviour
 
     private void Kill()
     {
+        FromKilled?.Invoke();
         Remove();
     }
 
