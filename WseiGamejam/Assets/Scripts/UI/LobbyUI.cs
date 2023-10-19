@@ -76,7 +76,7 @@ namespace UI
         private void StartGame()
         {
             Debug.Log("Game starting...");
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(ConstValues.GameSceneName);
         }
     }
 }

@@ -15,6 +15,9 @@ public class PlayerManager : MonoBehaviour
     public Player Runner { get; set; }
     public RunnerPlayerInput RunnerPlayerInput { get; set; }
 
+    [SerializeField] private Frog RunnerPrefab;
+    [SerializeField] private Scope ShooterPrefab;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -42,12 +45,22 @@ public class PlayerManager : MonoBehaviour
         {
             Shooter = player;
             ShooterPlayerInput = player.ShooterPlayerInput;
+            if (Utilities.IsInGameScene)
+            {
+                Shooter.Input.SwitchCurrentActionMap("Shooter");
+                Instantiate(ShooterPrefab);
+            }
         }
 
         else
         {
             Runner = player;
             RunnerPlayerInput = player.RunnerPlayerInput;
+            if (Utilities.IsInGameScene)
+            {
+                Instantiate(RunnerPrefab);
+                Shooter.Input.SwitchCurrentActionMap("Runner");
+            }
         }
             
 
