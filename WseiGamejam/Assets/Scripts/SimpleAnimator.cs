@@ -8,28 +8,23 @@ public class SimpleAnimator : MonoBehaviour
     [SerializeField] private List<Sprite> frames;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    private float _framesPerSecond;
-
-    private void Awake()
-    {
-        _framesPerSecond = ConstValues.FramesPerSecond;
-    }
+    private int _currentFrameIndex = 0;
 
     private void Start()
     {
-        StartCoroutine(AnimationCoroutine());
+        var animationManager = FindObjectOfType<AnimatorManager>();
+        animationManager.NewFrame += OnNewFrame;
+        spriteRenderer.sprite = frames[0];
     }
 
-    private IEnumerator AnimationCoroutine()
+    private void OnNewFrame()
     {
-        var currentFrameIndex = 0;
-        while (true)
-        {
-            yield return new WaitForSeconds(1f / _framesPerSecond);
-            currentFrameIndex++;
-            if (currentFrameIndex >= frames.Count)
-                currentFrameIndex = 0;
-            spriteRenderer.sprite = frames[currentFrameIndex];
-        }
+        if (frames.Count <= 1)
+            return;
+        
+        _currentFrameIndex++;
+        if (_currentFrameIndex >= frames.Count)
+            _currentFrameIndex = 0;
+        spriteRenderer.sprite = frames[_currentFrameIndex];
     }
 }
