@@ -9,6 +9,9 @@ public class Scope : MonoBehaviour
     [SerializeField]
     private GameObject Bullet;
 
+    [SerializeField]
+    private float BulletRadius = 0.12f;
+
     private Vector3 currentMovement;
 
     public void Init(ShooterPlayerInput shooterPlayerInput)
@@ -29,6 +32,18 @@ public class Scope : MonoBehaviour
 
     private void OnPlayerShot()
     {
-        Instantiate(Bullet, transform.position, Quaternion.identity);
+        var colliders = Physics2D.OverlapCircleAll(transform.position, BulletRadius);
+        Debug.DrawLine(transform.position + Vector3.left * BulletRadius, transform.position + Vector3.right * BulletRadius);
+
+        foreach(var collider in colliders)
+        {
+            var buff = collider.GetComponent<BuffPickup>();
+            if(buff != null)
+            {
+                Debug.Log(buff.test);
+            }
+        }
+
+        //Instantiate(Bullet, transform.position, Quaternion.identity);
     }
 }

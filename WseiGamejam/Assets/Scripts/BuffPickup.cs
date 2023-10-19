@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class BuffPickup : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
+    public string test = "TEST";
 }
