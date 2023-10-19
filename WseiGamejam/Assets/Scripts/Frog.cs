@@ -36,10 +36,26 @@ public class Frog : MonoBehaviour
 
     private void Update()
     {
-        var colliders = Physics2D.OverlapCircleAll(transform.position, 0.25f, layerMask);
+        var colliders = Physics2D.OverlapCircleAll(transform.position, 0.4f, layerMask);
         if(colliders.Length < 1)
         {
             TakeDamage(); 
+        }
+        else
+        {
+            foreach (var collider in colliders)
+            {
+                var platform = collider.GetComponent<Platform>();
+
+                if (platform is null) continue;
+                else
+                {
+                    transform.SetParent(platform.transform);
+                    return;
+                }
+            }
+
+            transform.SetParent(null);
         }
     }
 
@@ -55,13 +71,13 @@ public class Frog : MonoBehaviour
 
     private void OnPlayerMoved(Vector2 vector)
     {
-        if (transform.parent != null)
-        {
-            if (transform.parent.GetComponent<IObstacle>() is not null)
-            {
-                transform.SetParent(null);
-            }
-        }
+        //if (transform.parent != null)
+        //{
+        //    if (transform.parent.GetComponent<IObstacle>() is not null)
+        //    {
+        //        transform.SetParent(null);
+        //    }
+        //}
 
         var delta = vector.normalized * jumpLength;
         transform.position += (Vector3)delta;
@@ -85,7 +101,7 @@ public class Frog : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 0.25f);
+        Gizmos.DrawSphere(transform.position, 0.4f);
     }
 
     public void Remove()
