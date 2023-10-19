@@ -44,5 +44,7 @@ public class Frog : MonoBehaviour
     public void TakeDamage()
     {
         Debug.Log("Frog taking damage!");
+
+
     }
 }
