@@ -68,8 +68,6 @@ public class PlayerManager : MonoBehaviour
     public void SpawnPlayers()
     {
         Instantiate(ShooterPrefab);
-        Debug.Log(Shooter);
-        Debug.Log(Shooter.Input);
         Shooter.Input.enabled = true;
         Shooter.Input.SwitchCurrentActionMap("Shooter");
 
