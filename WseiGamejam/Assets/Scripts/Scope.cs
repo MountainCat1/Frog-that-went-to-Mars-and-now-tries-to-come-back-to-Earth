@@ -1,23 +1,34 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Scope : MonoBehaviour
 {
     [SerializeField]
-    public float InputStrength = 1f;
+    public float InputStrength = 7f;
 
     [SerializeField]
     private GameObject Bullet;
 
-    void Update()
+    private Vector3 currentMovement;
+
+    public void Init(PlayerInputMediator playerInputMediator)
     {
-        float H = Input.GetAxis("Horizontal");
-        float V = Input.GetAxis("Vertical");
+        playerInputMediator.PlayerMoved += OnPlayerMoved;
+        playerInputMediator.PlayerShot += OnPlayerShot;
+    }
 
-        transform.position += new Vector3(H, V, 0f) * Time.deltaTime * InputStrength;
+    public void Update()
+    {
+        transform.position += currentMovement * Time.deltaTime * InputStrength;
+    }
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(Bullet, transform.position, Quaternion.identity);
-        }
+    private void OnPlayerMoved(Vector2 obj)
+    {
+        currentMovement = new Vector3(obj.x, obj.y, 0f);
+    }
+
+    private void OnPlayerShot()
+    {
+        Instantiate(Bullet, transform.position, Quaternion.identity);
     }
 }
