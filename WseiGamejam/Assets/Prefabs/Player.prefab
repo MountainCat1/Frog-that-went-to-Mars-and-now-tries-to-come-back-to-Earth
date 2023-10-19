@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Input>k__BackingField: {fileID: 7815738323744846574}
   <CommonInput>k__BackingField: {fileID: 6688001063720065786}
+  <RunnerPlayerInput>k__BackingField: {fileID: 483612097760260867}
+  <ShooterPlayerInput>k__BackingField: {fileID: 4203468489768179605}
 --- !u!1 &5113675615344974762
 GameObject:
   m_ObjectHideFlags: 0

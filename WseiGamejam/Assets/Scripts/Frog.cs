@@ -6,12 +6,12 @@ using Zenject;
 
 public class Frog : MonoBehaviour
 {
-    [Inject]
-    private RunnerPlayerInput runnerPlayerInput;
+    [Inject] 
+    private PlayerManager playerManager;
 
     public void Awake()
     {
-        runnerPlayerInput.PlayerMoved += OnPlayerMoved;
+        playerManager.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
     }
 
     private void OnPlayerMoved(Vector2 vector)
