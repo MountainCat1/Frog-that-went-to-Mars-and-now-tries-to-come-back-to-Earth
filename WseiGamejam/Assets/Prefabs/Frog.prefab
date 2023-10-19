@@ -48,6 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLength: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  frogSpawner: {fileID: 0}
 --- !u!58 &8198306370359412335
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -82,7 +86,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.37
 --- !u!50 &-8552849861414440226
 Rigidbody2D:
   serializedVersion: 4
@@ -184,15 +188,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: afa4f70f9e5b2ea4c82ed24dce6227ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55788657e0d7a1f4aa4538f1ed77610f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6050798822025584297

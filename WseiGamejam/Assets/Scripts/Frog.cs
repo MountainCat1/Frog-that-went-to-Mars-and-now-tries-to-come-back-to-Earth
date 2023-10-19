@@ -7,6 +7,8 @@ public class Frog : MonoBehaviour
 
     [SerializeField] float jumpLength = 1f;
 
+    [SerializeField] LayerMask layerMask;
+
     [HideInInspector]
     public FrogSpawner frogSpawner;
 
@@ -19,6 +21,15 @@ public class Frog : MonoBehaviour
     {
         _playerManager = FindObjectOfType<PlayerManager>();
         _playerManager.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
+    }
+
+    private void Update()
+    {
+        var colliders = Physics2D.OverlapCircleAll(transform.position, 0.25f, layerMask);
+        if(colliders.Length < 1)
+        {
+            TakeDamage(); 
+        }
     }
 
     private void LateUpdate()
@@ -57,5 +68,11 @@ public class Frog : MonoBehaviour
         }
 
         transform.position = newStartPoint;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.25f);
     }
 }

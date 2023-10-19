@@ -115,7 +115,6 @@ public class Scope : MonoBehaviour
         canFire = false;
 
         var colliders = Physics2D.OverlapCircleAll(transform.position, BulletRadius);
-        Debug.DrawLine(transform.position + Vector3.left * BulletRadius, transform.position + Vector3.right * BulletRadius);
 
         foreach(var collider in colliders)
         {
