@@ -20,9 +20,9 @@ public class Scope : MonoBehaviour
 
     private bool canFire = true;
 
-    private static Vector2[] reloadZones = new Vector2[] { new Vector2(0f, 1f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f) };
+    private static Vector2[] reloadZones = new Vector2[] { new Vector2(0f, 1f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f), new Vector2(0f, 1f) };
     float realoadZonesErrorTolerance = 0.1f;
-    int index = 0;
+    int currentReloadIndex = 0;
 
     public void Awake()
     {
@@ -42,17 +42,21 @@ public class Scope : MonoBehaviour
     {
         currentMovement = new Vector2(obj.x, obj.y);
 
-        if (NearlyEqual(obj, reloadZones[index], realoadZonesErrorTolerance))
+        if (!canFire)
         {
-            if(index == 0)
+            if (NearlyEqual(obj, reloadZones[currentReloadIndex], realoadZonesErrorTolerance))
             {
-                StartCoroutine("ResetReload");
-            }
+                if (currentReloadIndex == 0)
+                {
+                    StartCoroutine("ResetReload");
+                }
 
-            if (++index == reloadZones.Length)
-            {
-                canFire = true;
-                index = 0;
+                if (++currentReloadIndex == reloadZones.Length)
+                {
+                    canFire = true;
+                    Debug.Log("Reloaded");
+                    currentReloadIndex = 0;
+                }
             }
         }
     }
@@ -60,7 +64,7 @@ public class Scope : MonoBehaviour
     private IEnumerator ResetReload()
     {
         yield return new WaitForSeconds(1.2f);
-        index = 0;
+        currentReloadIndex = 0;
     }
 
     public static bool NearlyEqual(Vector2 a, Vector2 b, float error = 0.1f)
@@ -82,7 +86,7 @@ public class Scope : MonoBehaviour
             var buff = collider.GetComponent<BuffPickup>();
             if(buff != null)
             {
-
+                Debug.Log("Buff");
             }
         }
 
