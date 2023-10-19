@@ -128,7 +128,7 @@ public class Scope : MonoBehaviour
             var frog = collider.GetComponent<Frog>();
             if (frog != null)
             {
-                Debug.Log("Frog");
+                frog.TakeDamage();
             }
         }
 
