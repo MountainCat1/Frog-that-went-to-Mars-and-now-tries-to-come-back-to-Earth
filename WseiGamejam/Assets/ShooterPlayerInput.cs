@@ -9,7 +9,6 @@ public class ShooterPlayerInput : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        Debug.Log("xd");
         var move = context.ReadValue<Vector2>();
         PlayerMoved?.Invoke(move);
     }
