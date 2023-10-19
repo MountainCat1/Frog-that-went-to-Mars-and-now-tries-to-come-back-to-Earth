@@ -10,12 +10,15 @@ public class AnimatorManager : MonoBehaviour
 
     private float _framesPerSecond;
 
+    private Coroutine _frameCoroutine;
+
     private void Awake()
     {
         _framesPerSecond = ConstValues.FramesPerSecond;
+        _frameCoroutine = StartCoroutine(FrameCoroutine());
     }
     
-    private IEnumerator AnimationCoroutine()
+    private IEnumerator FrameCoroutine()
     {
         while (true)
         {

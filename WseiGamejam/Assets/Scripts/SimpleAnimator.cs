@@ -9,12 +9,18 @@ public class SimpleAnimator : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private int _currentFrameIndex = 0;
+    private AnimatorManager _animatorManager;
 
     private void Start()
     {
-        var animationManager = FindObjectOfType<AnimatorManager>();
-        animationManager.NewFrame += OnNewFrame;
+        _animatorManager = FindObjectOfType<AnimatorManager>();
+        _animatorManager.NewFrame += OnNewFrame;
         spriteRenderer.sprite = frames[0];
+    }
+
+    private void OnDestroy()
+    {
+        _animatorManager.NewFrame -= OnNewFrame;
     }
 
     private void OnNewFrame()
