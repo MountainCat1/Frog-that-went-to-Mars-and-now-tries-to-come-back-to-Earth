@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-   public event Action<Player> PlayerJoined;
+    public event Action<Player> PlayerJoined;
 
-   public List<Player> Players { get; private set; } = new List<Player>();
+    public List<Player> Players { get; private set; } = new List<Player>();
 
     public Player Shooter { get; set; }
     public ShooterPlayerInput ShooterPlayerInput { get; set; }
@@ -21,7 +21,8 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        
+        Frog.FromRemoved += SpawnFrog;
+
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -31,14 +32,14 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void OnPlayerJoined(PlayerInput input)
-   {
-      var player = input.gameObject.GetComponentInParent<Player>();
-      
-      PlayerJoined?.Invoke(player);
-      
-      Players.Add(player);
+    {
+        var player = input.gameObject.GetComponentInParent<Player>();
 
-      player.transform.parent = transform;
+        PlayerJoined?.Invoke(player);
+
+        Players.Add(player);
+
+        player.transform.parent = transform;
 
         if (Shooter == null)
         {
@@ -56,15 +57,24 @@ public class PlayerManager : MonoBehaviour
             RunnerPlayerInput = player.RunnerPlayerInput;
             if (Utilities.IsInGameScene)
             {
-                Instantiate(RunnerPrefab);
+                SpawnFrog();
+
                 Runner.Input.SwitchCurrentActionMap("Runner");
             }
         }
-            
 
-      Debug.Log($"Player joined {input.playerIndex}");
-   }
 
+        Debug.Log($"Player joined {input.playerIndex}");
+    }
+
+    void SpawnFrog()
+    {
+        var frogSpawner = FindObjectOfType<FrogSpawner>();
+        var spawnPoint = frogSpawner.GetSpawnPoint();
+
+        Frog frog = Instantiate(RunnerPrefab, spawnPoint, Quaternion.identity);
+    }
+    
     public void SpawnPlayers()
     {
         Instantiate(ShooterPrefab);
@@ -74,13 +84,9 @@ public class PlayerManager : MonoBehaviour
         Vector2 spawnPoint = Vector2.zero;
 
         var frogSpawner = FindAnyObjectByType<FrogSpawner>();
-        if (frogSpawner != null)
-        {
-            spawnPoint = frogSpawner.GetSpawnPoint();
-        }
+        spawnPoint = frogSpawner.GetSpawnPoint();
 
         Frog frog = Instantiate(RunnerPrefab, spawnPoint, Quaternion.identity);
-        frog.frogSpawner = frogSpawner;
 
         Runner.Input.enabled = true;
         Runner.Input.SwitchCurrentActionMap("Runner");

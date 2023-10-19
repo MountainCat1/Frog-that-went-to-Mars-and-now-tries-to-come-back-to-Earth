@@ -22,8 +22,10 @@ public class Platform : MonoBehaviour, IObstacle
         if (frog is null)
             return;
 
+        var locPos = transform.InverseTransformPoint(frog.transform.position);
+
         frog.transform.SetParent(transform, false);
-        frog.transform.localPosition = Vector3.zero;
+        frog.transform.localPosition = locPos;
     }
 
     private void Update()

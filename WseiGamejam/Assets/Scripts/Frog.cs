@@ -1,24 +1,53 @@
 using System;
+using ModestTree;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Frog : MonoBehaviour
 {
+    public static Frog Singleton { private set; get; }
+
+    public static event Action FrogMoved;
+    public static event Action FromRemoved;
+    
     private PlayerManager _playerManager;
+    private Player _runner;
 
     [SerializeField] float jumpLength = 1f;
 
-    [HideInInspector]
-    public FrogSpawner frogSpawner;
+    [SerializeField] LayerMask layerMask;
 
     public void Awake()
     {
-        frogSpawner = FindAnyObjectByType<FrogSpawner>();
+        if (Singleton)
+        {
+            Destroy(Singleton);
+            Singleton = this;
+        }
+
+        Singleton = this;
     }
 
     void Start()
     {
         _playerManager = FindObjectOfType<PlayerManager>();
-        _playerManager.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
+        _runner = _playerManager.Runner;
+        _runner.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
+    }
+
+
+    private void OnDestroy()
+    {
+        _runner.RunnerPlayerInput.PlayerMoved -= OnPlayerMoved;
+    }
+
+    private void Update()
+    {
+        var colliders = Physics2D.OverlapCircleAll(transform.position, 0.25f, layerMask);
+        if(colliders.Length < 1)
+        {
+            TakeDamage(); 
+        }
     }
 
     private void LateUpdate()
@@ -43,19 +72,39 @@ public class Frog : MonoBehaviour
 
         var delta = vector.normalized * jumpLength;
         transform.position += (Vector3)delta;
+        FrogMoved?.Invoke();
     }
     
     public void TakeDamage()
     {
         Debug.Log("Frog taking damage!");
 
-        Vector2 newStartPoint = Vector2.zero;
+        // Vector2 newStartPoint = Vector2.zero;
+        //
+        // if (frogSpawner != null)
+        // {
+        //     newStartPoint = frogSpawner.GetSpawnPoint();
+        // }
+        //
+        // transform.position = newStartPoint;
 
-        if (frogSpawner != null)
-        {
-            newStartPoint = frogSpawner.GetSpawnPoint();
-        }
+        Kill();
+    }
 
-        transform.position = newStartPoint;
+    private void Kill()
+    {
+        Remove();
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.25f);
+    }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
+        FromRemoved?.Invoke();
     }
 }
