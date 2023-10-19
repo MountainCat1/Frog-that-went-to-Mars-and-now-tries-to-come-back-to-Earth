@@ -61,6 +61,37 @@ public class Scope : MonoBehaviour
         //transform.position += currentMovement * Time.deltaTime * InputStrength;
     }
 
+    void LateUpdate()
+    {
+        var viewpointCoord = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (viewpointCoord.x < 0.0f)
+        {
+            viewpointCoord.x = 0.0f;
+            transform.position = Camera.main.ViewportToWorldPoint(viewpointCoord);
+            rb.velocity = Vector2.zero;
+        }
+        else if (viewpointCoord.x > 1.0f)
+        {
+            viewpointCoord.x = 1.0f;
+            transform.position = Camera.main.ViewportToWorldPoint(viewpointCoord);
+            rb.velocity = Vector2.zero;
+        }
+
+        if (viewpointCoord.y < 0.0f)
+        {
+            viewpointCoord.y = 0.0f;
+            transform.position = Camera.main.ViewportToWorldPoint(viewpointCoord);
+            rb.velocity = Vector2.zero;
+        }
+        else if (viewpointCoord.y > 1.0f)
+        {
+            viewpointCoord.y = 1.0f;
+            transform.position = Camera.main.ViewportToWorldPoint(viewpointCoord);
+            rb.velocity = Vector2.zero;
+        }
+    }
+
     private void OnPlayerMoved(Vector2 obj)
     {
         currentMovement = new Vector2(obj.x, obj.y);
