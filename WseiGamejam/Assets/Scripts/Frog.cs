@@ -1,8 +1,14 @@
 using System;
+using ModestTree;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Frog : MonoBehaviour
 {
+    public static Frog Singleton { private set; get; }
+
+    public static event Action FrogMoved;
+    
     private PlayerManager _playerManager;
 
     [SerializeField] float jumpLength = 1f;
@@ -15,6 +21,11 @@ public class Frog : MonoBehaviour
     public void Awake()
     {
         frogSpawner = FindAnyObjectByType<FrogSpawner>();
+        
+        if(Singleton)
+            Debug.Log("Singleton pooped their pants!");
+
+        Singleton = this;
     }
 
     void Start()
@@ -54,6 +65,7 @@ public class Frog : MonoBehaviour
 
         var delta = vector.normalized * jumpLength;
         transform.position += (Vector3)delta;
+        FrogMoved?.Invoke();
     }
     
     public void TakeDamage()
