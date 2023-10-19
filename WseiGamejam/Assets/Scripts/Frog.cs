@@ -17,6 +17,16 @@ public class Frog : MonoBehaviour
         _playerManager.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
     }
 
+    private void LateUpdate()
+    {
+        var viewpointCoord = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (viewpointCoord.x < 0.0f || viewpointCoord.x > 1.0f)
+        {
+            TakeDamage();
+        }
+    }
+
     private void OnPlayerMoved(Vector2 vector)
     {
         if (transform.parent != null)
