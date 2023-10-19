@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Active: 1
   shader: {fileID: 4800000, guid: 6f2fcdc189458914eb8a323f19e3a27b, type: 3}
   injectionPoint: 550
-  preset: 1
+  preset: 6
   pixelResolutionX: 189
   pixelResolutionY: 210
   screenBend: 0.51
