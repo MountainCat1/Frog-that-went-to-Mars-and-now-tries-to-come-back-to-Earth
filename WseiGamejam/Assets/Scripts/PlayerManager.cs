@@ -27,7 +27,10 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
+        Instantiate(ShooterPrefab);
         Shooter.Input.SwitchCurrentActionMap("Shooter");
+
+        Instantiate(RunnerPrefab);
         Runner.Input.SwitchCurrentActionMap("Runner");
     }
 
@@ -51,8 +54,7 @@ public class PlayerManager : MonoBehaviour
                 Instantiate(ShooterPrefab);
             }
         }
-
-        else
+        else if (Runner == null)
         {
             Runner = player;
             RunnerPlayerInput = player.RunnerPlayerInput;

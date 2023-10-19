@@ -1,7 +1,8 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : MonoBehaviour, IObstacle
+public class Platform : MonoBehaviour, IObstacle
 {
     private Vector2 _destination;
     private float _speed;
@@ -16,23 +17,34 @@ public class Trap : MonoBehaviour, IObstacle
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("Trigger");
         var frog = col.gameObject.GetComponent<Frog>();
-        if(frog is null)
+        if (frog is null)
             return;
-        
-        frog.TakeDamage();
+
+        frog.transform.SetParent(transform, false);
+        frog.transform.localPosition = Vector3.zero;
     }
 
     private void Update()
     {
         _speed += _acceleration * Time.deltaTime;
-        
-        
+
+
         float step = Time.deltaTime * _speed;
         transform.position = Vector2.MoveTowards(transform.position, _destination, step);
-        
-        
-        if(Vector2.Distance(transform.position, _destination) <= 0.01f)
+
+
+        if (Vector2.Distance(transform.position, _destination) <= 0.01f)
             Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        var frog = transform.GetComponentInChildren<Frog>();
+        if(frog is null) return;
+
+        frog.TakeDamage();
+        frog.transform.SetParent(null);//TO DO remove xD
     }
 }

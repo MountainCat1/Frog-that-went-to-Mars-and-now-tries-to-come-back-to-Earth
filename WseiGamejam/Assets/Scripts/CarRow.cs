@@ -9,7 +9,7 @@ public class CarRow : MapRow
     [SerializeField] private float spawnCarDelay;
     [SerializeField] private float trapSpeed;
     [SerializeField] private float trapAcceleration;
-    [SerializeField] private Trap trapPrefab;
+    [SerializeField] private GameObject trapPrefab;
 
     private Coroutine _spawnTrapsCoroutine;
     
@@ -32,6 +32,11 @@ public class CarRow : MapRow
         var trap = Instantiate(trapPrefab);
         trap.transform.position = start.position;
 
-        trap.Initialize(end.position, trapSpeed, trapAcceleration);
+        trap.GetComponent<IObstacle>().Initialize(end.position, trapSpeed, trapAcceleration);
     }
+}
+
+public interface IObstacle
+{
+    public void Initialize(Vector3 destination, float speed = 1f, float acceleration = 1f);
 }
