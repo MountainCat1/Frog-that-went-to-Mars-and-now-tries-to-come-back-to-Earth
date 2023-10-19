@@ -31,17 +31,11 @@ public class Scope : MonoBehaviour
         
         shooterPlayerInput.PlayerMoved += OnPlayerMoved;
         shooterPlayerInput.PlayerShot += OnPlayerShot;
-    }
-    public void Update()
-    {
-        rb.AddForce(currentMovement * Time.deltaTime * InputStrength);
-        //transform.position += currentMovement * Time.deltaTime * InputStrength;
+        shooterPlayerInput.PlayerReload += OnPlayerReload;
     }
 
-    private void OnPlayerMoved(Vector2 obj)
+    private void OnPlayerReload(Vector2 obj)
     {
-        currentMovement = new Vector2(obj.x, obj.y);
-
         if (!canFire)
         {
             if (NearlyEqual(obj, reloadZones[currentReloadIndex], realoadZonesErrorTolerance))
@@ -59,6 +53,17 @@ public class Scope : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Update()
+    {
+        rb.AddForce(currentMovement * Time.deltaTime * InputStrength);
+        //transform.position += currentMovement * Time.deltaTime * InputStrength;
+    }
+
+    private void OnPlayerMoved(Vector2 obj)
+    {
+        currentMovement = new Vector2(obj.x, obj.y);
     }
 
     private IEnumerator ResetReload()
