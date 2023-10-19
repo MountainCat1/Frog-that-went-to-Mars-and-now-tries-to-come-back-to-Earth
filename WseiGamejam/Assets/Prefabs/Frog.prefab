@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c6d7d9c44534b48a7525eeb24f56ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpLength: 1
 --- !u!58 &8198306370359412335
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -92,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7087643987037954347}
   - component: {fileID: 2704079886250838043}
+  - component: {fileID: 6050798822025584297}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -163,6 +163,22 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6050798822025584297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845293851366368429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318d32c42d6c0fc46b1b773be51bb0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 21300000, guid: 55788657e0d7a1f4aa4538f1ed77610f, type: 3}
+  - {fileID: 21300000, guid: ad7f3982c40ae7742853f68453a7fd01, type: 3}
+  spriteRenderer: {fileID: 2704079886250838043}
