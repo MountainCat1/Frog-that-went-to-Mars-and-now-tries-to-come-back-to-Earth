@@ -506,9 +506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b75097ff01844d44bd9d863502c6dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frogKilledDisplay: {fileID: 718878271}
-  frogEscapedDisplay: {fileID: 1640320312}
-  timeDisplay: {fileID: 0}
+  shooterScoreDisplay: {fileID: 718878271}
+  runnerScoreDisplay: {fileID: 1640320312}
+  timeDisplay: {fileID: 66745163}
 --- !u!1 &222843144
 GameObject:
   m_ObjectHideFlags: 0

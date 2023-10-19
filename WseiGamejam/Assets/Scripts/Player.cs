@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [field: SerializeField] public CommonPlayerInput CommonInput { get; set; }
     [field: SerializeField] public RunnerPlayerInput RunnerPlayerInput { get; set; }
     [field: SerializeField] public ShooterPlayerInput ShooterPlayerInput { get; set; }
+
+    public int Score { get; set; }
     
     public bool Ready { get; set; }
     

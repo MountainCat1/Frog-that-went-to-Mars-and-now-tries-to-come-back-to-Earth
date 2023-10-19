@@ -87,4 +87,9 @@ public class Frog : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, 0.25f);
     }
+
+    public void Remove()
+    {
+        throw new NotImplementedException();
+    }
 }
