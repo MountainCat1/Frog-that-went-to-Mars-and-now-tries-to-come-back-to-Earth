@@ -5,6 +5,6 @@ public class GameStarter : MonoBehaviour
 {
     public void Start()
     {
-        FindObjectOfType<PlayerManager>().SpawnPlayers();
+        GetComponent<PlayerManager>().SpawnPlayers();
     }
 }
