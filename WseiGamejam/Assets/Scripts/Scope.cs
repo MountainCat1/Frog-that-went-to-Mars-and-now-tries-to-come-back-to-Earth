@@ -90,6 +90,12 @@ public class Scope : MonoBehaviour
             {
                 Debug.Log("Buff");
             }
+
+            var frog = collider.GetComponent<Frog>();
+            if (frog != null)
+            {
+                Debug.Log("Frog");
+            }
         }
 
         //Instantiate(Bullet, transform.position, Quaternion.identity);

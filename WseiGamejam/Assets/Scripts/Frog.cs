@@ -8,6 +8,8 @@ public class Frog : MonoBehaviour
 {
     private PlayerManager playerManager;
 
+    [SerializeField] float jumpLength = 1f;
+
     public void Awake()
     {
     }
@@ -18,9 +20,13 @@ public class Frog : MonoBehaviour
     }
     private void OnPlayerMoved(Vector2 vector)
     {
-        Debug.Log("Move");
-        transform.position += new Vector3(vector.x, vector.y, 0f);
+        var delta = vector.normalized * jumpLength;
+        transform.position += (Vector3)delta;
     }
 
+    public void TakeDamage()
+    {
+
+    }
 
 }
