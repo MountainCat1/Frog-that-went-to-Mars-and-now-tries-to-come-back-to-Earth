@@ -1,23 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class Frog : MonoBehaviour
 {
-    private PlayerManager playerManager;
+    private PlayerManager _playerManager;
 
     [SerializeField] float jumpLength = 1f;
 
     public void Awake()
     {
     }
+
     void Start()
     {
-        playerManager = FindObjectOfType<PlayerManager>();
-        playerManager.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
+        _playerManager = FindObjectOfType<PlayerManager>();
+        _playerManager.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
     }
+
     private void OnPlayerMoved(Vector2 vector)
     {
         var delta = vector.normalized * jumpLength;
@@ -26,7 +24,5 @@ public class Frog : MonoBehaviour
 
     public void TakeDamage()
     {
-
     }
-
 }

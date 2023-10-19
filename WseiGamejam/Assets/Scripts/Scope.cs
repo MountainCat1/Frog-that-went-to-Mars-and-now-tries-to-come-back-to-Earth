@@ -1,7 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Zenject;
 
 public class Scope : MonoBehaviour
 {

@@ -1,5 +1,4 @@
-﻿using UnityEngine.InputSystem;
-using Zenject;
+﻿using Zenject;
 
 namespace Installers
 {
