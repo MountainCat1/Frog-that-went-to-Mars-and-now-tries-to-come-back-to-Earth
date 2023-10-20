@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7000cd09b4ca4046ae82adcf084b2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camTransform: {fileID: 0}
+  camTransform: {fileID: 373269220}
   shakeDuration: 0
   shakeAmount: 10
   decreaseFactor: 1
@@ -2467,7 +2467,7 @@ MonoBehaviour:
   scoreForFrogEscape: 100
   scoreForKillingFrog: 100
   scoreForFrogDead: 20
-  <RoundTime>k__BackingField: 5
+  <RoundTime>k__BackingField: 60
   <Time>k__BackingField: 0
 --- !u!1001 &1086623830
 PrefabInstance:
