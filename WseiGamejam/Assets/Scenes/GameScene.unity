@@ -2467,7 +2467,7 @@ MonoBehaviour:
   scoreForFrogEscape: 100
   scoreForKillingFrog: 100
   scoreForFrogDead: 20
-  <RoundTime>k__BackingField: 60
+  <RoundTime>k__BackingField: 5
   <Time>k__BackingField: 0
 --- !u!1001 &1086623830
 PrefabInstance:

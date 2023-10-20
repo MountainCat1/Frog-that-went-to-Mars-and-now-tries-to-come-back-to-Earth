@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     public event Action PlayerReady;
     public event Action PlayerNotReady;
     
+    public int FrogRounds { get; set; }
+    public int ShooterRounds { get; set; }
+    
     [field: SerializeField] public PlayerInput Input { get; set; }
     [field: SerializeField] public CommonPlayerInput CommonInput { get; set; }
     [field: SerializeField] public RunnerPlayerInput RunnerPlayerInput { get; set; }

@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         _playerManager.Shooter.Input.SwitchCurrentActionMap("Shooter");
         _playerManager.Runner.Input.SwitchCurrentActionMap("Runner");
 
-        SceneManager.LoadScene(ConstValues.GameSceneName);
+        SceneManager.LoadScene(ConstValues.SummaryScene);
     }
 
     private void FrogEscaped()

@@ -18,7 +18,7 @@ public class PlayerLobbyDisplayUI : MonoBehaviour
     {
         _player = player;
 
-        playerNameDisplay.text = $"Player {player.Input.playerIndex}";
+        // playerNameDisplay.text = $"Player {player.Input.playerIndex}";
      
         disconnectedDisplay.SetActive(false);
         connectedDisplay.SetActive(true);

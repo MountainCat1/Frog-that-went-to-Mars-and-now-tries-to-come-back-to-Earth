@@ -114,22 +114,22 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "8f88151f-6c4f-49d9-9c7f-f2f96bdc61d3",
-                    "path": "<Gamepad>/rightTrigger",
+                    "id": "652b8598-d2c9-45b7-b239-a31ae6e929e1",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Default",
+                    "groups": "",
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "082b1ffe-c7f9-4d6c-a38c-9439959a9c91",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "ff3e0aef-d4ff-4b3c-979f-1ef8f2035b84",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Default",
+                    "groups": "",
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false

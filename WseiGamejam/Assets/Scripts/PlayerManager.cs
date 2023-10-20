@@ -84,5 +84,9 @@ public class PlayerManager : MonoBehaviour
 
         Runner.Input.enabled = true;
         Runner.Input.SwitchCurrentActionMap("Runner");
+
+
+        Shooter.ShooterRounds++;
+        Runner.FrogRounds++;
     }
 }
