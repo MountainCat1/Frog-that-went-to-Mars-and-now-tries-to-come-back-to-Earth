@@ -101,6 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputStrength: 1500
   BulletRadius: 0.12
+  reloadedScopeSprite: {fileID: 21300000, guid: 769e1269c91a2d249985fc902c96e4b1, type: 3}
+  notReloadedScopeSprite: {fileID: -1267198211, guid: 067ed4b53a79f714a89eee7703615746, type: 3}
+  spriteRenderer: {fileID: 4645930548000226074}
 --- !u!50 &8646420263918036305
 Rigidbody2D:
   serializedVersion: 4

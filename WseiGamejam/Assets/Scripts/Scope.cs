@@ -25,6 +25,10 @@ public class Scope : MonoBehaviour
     float realoadZonesErrorTolerance = 0.1f;
     int currentReloadIndex = 0;
 
+    [SerializeField] private Sprite reloadedScopeSprite;
+    [SerializeField] private Sprite notReloadedScopeSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -60,6 +64,7 @@ public class Scope : MonoBehaviour
                 {
                     canFire = true;
                     Reloaded?.Invoke();
+                    spriteRenderer.sprite = reloadedScopeSprite;
                     Debug.Log("Reloaded");
                     currentReloadIndex = 0;
                 }
@@ -123,6 +128,7 @@ public class Scope : MonoBehaviour
     private void OnPlayerShot()
     {
         if (!canFire) return;
+        spriteRenderer.sprite = notReloadedScopeSprite;
         Debug.Log("Shot");
         canFire = false;
 
