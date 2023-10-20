@@ -19,6 +19,7 @@ public class Scope : MonoBehaviour
     private bool canFire = true;
 
     public static event Action Shot;
+    public static event Action Reloaded;
 
     private static Vector2[] reloadZones = new Vector2[] { new Vector2(0f, 1f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f), new Vector2(0f, 1f) };
     float realoadZonesErrorTolerance = 0.1f;
@@ -51,6 +52,7 @@ public class Scope : MonoBehaviour
                 if (++currentReloadIndex == reloadZones.Length)
                 {
                     canFire = true;
+                    Reloaded?.Invoke();
                     Debug.Log("Reloaded");
                     currentReloadIndex = 0;
                 }

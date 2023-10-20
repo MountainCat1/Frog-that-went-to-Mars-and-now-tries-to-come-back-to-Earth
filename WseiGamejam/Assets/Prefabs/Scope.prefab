@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e5b0b8161057f449e1c983dd500943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputStrength: 400
+  InputStrength: 1500
   BulletRadius: 0.12
 --- !u!50 &8646420263918036305
 Rigidbody2D:
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.5
+  m_LinearDrag: 4.5
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
