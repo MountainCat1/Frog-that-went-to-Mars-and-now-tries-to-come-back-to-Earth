@@ -27,7 +27,7 @@ public class SoundShitter : MonoBehaviour
 
     void Start()
     {
-        if (Singeleton != null)
+        if (Singeleton != this)
             return;
         
         

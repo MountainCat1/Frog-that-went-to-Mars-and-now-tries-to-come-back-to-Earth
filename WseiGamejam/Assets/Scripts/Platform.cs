@@ -38,14 +38,21 @@ public class Platform : MonoBehaviour, IObstacle
 
 
         if (Vector2.Distance(transform.position, _destination) <= 0.01f)
+        {
+            var frog = transform.GetComponentInChildren<Frog>();
+                    
+            if(frog is not null)
+            {
+                frog.transform.SetParent(null);                
+                frog.TakeDamage();
+            }
+            
             Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()
     {
-        var frog = transform.GetComponentInChildren<Frog>();
-        if(frog is null) return;
 
-        frog.TakeDamage();
     }
 }

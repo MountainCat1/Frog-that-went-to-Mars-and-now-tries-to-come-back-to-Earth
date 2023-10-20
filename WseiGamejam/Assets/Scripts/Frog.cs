@@ -86,14 +86,6 @@ public class Frog : MonoBehaviour
 
     private void OnPlayerMoved(Vector2 vector)
     {
-        //if (transform.parent != null)
-        //{
-        //    if (transform.parent.GetComponent<IObstacle>() is not null)
-        //    {
-        //        transform.SetParent(null);
-        //    }
-        //}
-
         var delta = vector.normalized * jumpLength;
         transform.position += (Vector3)delta;
         FrogMoved?.Invoke();
