@@ -19,10 +19,15 @@ public class Scope : MonoBehaviour
     private bool canFire = true;
 
     public static event Action Shot;
+    public static event Action Reloaded;
 
     private static Vector2[] reloadZones = new Vector2[] { new Vector2(0f, 1f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f), new Vector2(0f, 1f) };
     float realoadZonesErrorTolerance = 0.1f;
     int currentReloadIndex = 0;
+
+    [SerializeField] private Sprite reloadedScopeSprite;
+    [SerializeField] private Sprite notReloadedScopeSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public void Awake()
     {
@@ -35,6 +40,13 @@ public class Scope : MonoBehaviour
         shooterPlayerInput.PlayerMoved += OnPlayerMoved;
         shooterPlayerInput.PlayerShot += OnPlayerShot;
         shooterPlayerInput.PlayerReload += OnPlayerReload;
+    }
+
+    private void OnDestroy()
+    {
+        shooterPlayerInput.PlayerMoved -= OnPlayerMoved;
+        shooterPlayerInput.PlayerShot -= OnPlayerShot;
+        shooterPlayerInput.PlayerReload -= OnPlayerReload;
     }
 
     private void OnPlayerReload(Vector2 obj)
@@ -51,6 +63,8 @@ public class Scope : MonoBehaviour
                 if (++currentReloadIndex == reloadZones.Length)
                 {
                     canFire = true;
+                    Reloaded?.Invoke();
+                    spriteRenderer.sprite = reloadedScopeSprite;
                     Debug.Log("Reloaded");
                     currentReloadIndex = 0;
                 }
@@ -114,6 +128,7 @@ public class Scope : MonoBehaviour
     private void OnPlayerShot()
     {
         if (!canFire) return;
+        spriteRenderer.sprite = notReloadedScopeSprite;
         Debug.Log("Shot");
         canFire = false;
 

@@ -1,7 +1,5 @@
 using System;
-using ModestTree;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Frog : MonoBehaviour
 {
@@ -13,15 +11,20 @@ public class Frog : MonoBehaviour
     
     private PlayerManager _playerManager;
     private Player _runner;
+    private FrogSpawner _spawner;
 
     [SerializeField] float jumpLength = 1f;
 
     [SerializeField] LayerMask layerMask;
 
+    private bool dead = false;
+    private bool removed = false;
+    
     public void Awake()
     {
         if (Singleton)
         {
+            Debug.Log("Overriding frog singeleton");
             Destroy(Singleton);
             Singleton = this;
         }
@@ -34,11 +37,15 @@ public class Frog : MonoBehaviour
         _playerManager = FindObjectOfType<PlayerManager>();
         _runner = _playerManager.Runner;
         _runner.RunnerPlayerInput.PlayerMoved += OnPlayerMoved;
+        _spawner = FindObjectOfType<FrogSpawner>();
     }
 
 
     private void OnDestroy()
     {
+        if(_runner is null)
+            return;
+        
         _runner.RunnerPlayerInput.PlayerMoved -= OnPlayerMoved;
     }
 
@@ -94,17 +101,6 @@ public class Frog : MonoBehaviour
     
     public void TakeDamage()
     {
-        Debug.Log("Frog taking damage!");
-
-        // Vector2 newStartPoint = Vector2.zero;
-        //
-        // if (frogSpawner != null)
-        // {
-        //     newStartPoint = frogSpawner.GetSpawnPoint();
-        // }
-        //
-        // transform.position = newStartPoint;
-
         Kill();
     }
 
@@ -122,7 +118,8 @@ public class Frog : MonoBehaviour
 
     public void Remove()
     {
-        Destroy(gameObject);
         FromRemoved?.Invoke();
+
+        transform.position = _spawner.GetSpawnPoint();
     }
 }

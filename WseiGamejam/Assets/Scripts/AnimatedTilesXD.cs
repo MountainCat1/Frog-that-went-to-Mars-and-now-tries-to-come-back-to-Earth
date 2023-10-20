@@ -11,6 +11,7 @@ public class AnimatedTilesXD : MonoBehaviour
     private AnimatorManager _animatorManager;
     private BoundsInt bounds;
     private TileBase[] allTiles;
+
     private void Start()
     {
         _animatorManager = FindObjectOfType<AnimatorManager>();
@@ -18,17 +19,18 @@ public class AnimatedTilesXD : MonoBehaviour
         bounds = tilemap.cellBounds;
         allTiles = tilemap.GetTilesBlock(bounds);
     }
-    
+
     private void OnDestroy()
     {
-        _animatorManager.NewFrame -= OnNewFrame;
+        if (_animatorManager != null)
+            _animatorManager.NewFrame -= OnNewFrame;
     }
 
     private void OnNewFrame()
     {
         if (frames.Count <= 1)
             return;
-        
+
         _currentFrameIndex++;
         if (_currentFrameIndex >= frames.Count)
             _currentFrameIndex = 0;
