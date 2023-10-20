@@ -11,6 +11,6 @@ public class GameStarter : MonoBehaviour
             return;
         }
         
-        GetComponent<PlayerManager>().SpawnPlayers();
+        FindObjectOfType<PlayerManager>().SpawnPlayers();
     }
 }

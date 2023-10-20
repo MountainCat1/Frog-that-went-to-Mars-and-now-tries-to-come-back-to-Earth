@@ -20,16 +20,11 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("PLAyer manage is here!");
+        
         DontDestroyOnLoad(gameObject);
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        Debug.Log(this);
-    }
-
+    
     public void OnPlayerJoined(PlayerInput input)
     {
         var player = input.gameObject.GetComponentInParent<Player>();

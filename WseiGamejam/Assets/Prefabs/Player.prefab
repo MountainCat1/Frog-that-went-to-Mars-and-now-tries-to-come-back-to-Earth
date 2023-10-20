@@ -189,7 +189,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c95e3785-09f0-4375-a03a-fb00755f1a8a
     m_ActionName: Shooter/Reload[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Common
   m_SplitScreenIndex: -1

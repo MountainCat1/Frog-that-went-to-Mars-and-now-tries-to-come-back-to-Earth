@@ -38,6 +38,13 @@ public class Scope : MonoBehaviour
         shooterPlayerInput.PlayerReload += OnPlayerReload;
     }
 
+    private void OnDestroy()
+    {
+        shooterPlayerInput.PlayerMoved -= OnPlayerMoved;
+        shooterPlayerInput.PlayerShot -= OnPlayerShot;
+        shooterPlayerInput.PlayerReload -= OnPlayerReload;
+    }
+
     private void OnPlayerReload(Vector2 obj)
     {
         if (!canFire)

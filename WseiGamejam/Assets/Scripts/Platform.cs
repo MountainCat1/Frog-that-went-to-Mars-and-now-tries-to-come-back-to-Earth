@@ -47,6 +47,5 @@ public class Platform : MonoBehaviour, IObstacle
         if(frog is null) return;
 
         frog.TakeDamage();
-        frog.transform.SetParent(null);//TO DO remove xD
     }
 }

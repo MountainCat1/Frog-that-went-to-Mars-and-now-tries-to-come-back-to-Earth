@@ -24,6 +24,7 @@ public class Frog : MonoBehaviour
     {
         if (Singleton)
         {
+            Debug.Log("Overriding frog singeleton");
             Destroy(Singleton);
             Singleton = this;
         }
